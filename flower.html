@@ -317,13 +317,45 @@
           <div class="leaf leaf--3"></div>
         </div>
       </div>
-      <div class="nav-container">
-            <a href="index.html" class="nav-btn">
-                <i class="fas fa-house-chimney"></i>
-        <span>Home</span>
-    </a>
-</div>
     </div>
     <script src="main.js"></script>
+    <style>
+    .nav-container {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+    }
+    .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 25px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        color: white;
+        text-decoration: none;
+        font-family: 'Segoe UI', sans-serif;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .nav-btn:hover {
+        background: white;
+        color: #ff6b6b;
+        transform: translateY(-5px);
+    }
+</style>
+
+<div class="nav-container">
+    <a href="index.html" class="nav-btn">
+        <i class="fas fa-house-chimney"></i>
+        <span>Back to Home</span>
+    </a>
+</div>
   </body>
 </html>
