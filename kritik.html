@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritik & Saran Sayang ✨</title>
+    <link rel="stylesheet" href="tekateki.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>💌 Surat Terbuka</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                Tuliskan apa saja yang kamu rasakan, kritik untukku, atau saran agar kita lebih baik ke depannya. Aku siap dengerin semuanya. ❤️
+            </p>
+            
+            <div class="input-area">
+                <textarea id="pesanCurhat" rows="5" placeholder="Tulis perasaanmu di sini..." style="width: 100%; border-radius: 15px; padding: 15px; border: 2px solid #f8bbd0; outline: none; font-family: inherit; margin-bottom: 15px;"></textarea>
+                
+                <button onclick="kirimPesan()" style="width: 100%;">Kirim ke WhatsApp Aku</button>
+            </div>
+
+            <div class="back-nav" style="margin-top: 20px;">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> back to home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function kirimPesan() {
+            const pesan = document.getElementById('pesanCurhat').value;
+            const nomorWA = "6281227884330"; // GANTI dengan nomor WhatsApp kamu (awali dengan 62)
+            
+            if (pesan.trim() === "") {
+                alert("Tulis sesuatu dulu dong sayang...");
+                return;
+            }
+
+            // Encode pesan agar bisa masuk ke URL
+            const pesanEncoded = encodeURIComponent("Halo Sayang, ini ada pesan dari hati aku: \n\n" + pesan);
+            
+            // Buka WhatsApp
+            window.open(`https://wa.me/${nomorWA}?text=${pesanEncoded}`, '_blank');
+        }
+    </script>
+</body>
+</html>

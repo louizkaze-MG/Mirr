@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Happy Birthday Mirla!</title>
+    <style>
+        /* --- RESET & BASE STYLE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Background luar dibuat soft agar fokus ke card */
+            background: linear-gradient(135deg, #fcfafb 0%, #2ac2cd 100%);
+            padding: 20px;
+        }
+
+        /* --- CONTAINER UTAMA (CARD) --- */
+        .main-card {
+            display: flex;
+            flex-direction: row; /* Membagi dua sisi: kiri & kanan */
+            background-color: white;
+            width: 100%;
+            max-width: 900px;
+            min-height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- SISI KIRI: FOTO --- */
+        .photo-side {
+            flex: 1.2; /* Sedikit lebih lebar untuk foto */
+            background-image: url('mirla.jpeg'); /* Nama file foto kamu */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* --- SISI KANAN: TEKS & TOMBOL --- */
+        .content-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .greetings {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .message-box {
+            background-color: #fff9f9;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .message-box p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* --- MENU TOMBOL (Gaya asli kamu) --- */
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #2fe0ec; /* Biru tetap sesuai keinginanmu */
+            color: white;
+            border: 2px solid #ffffff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* --- RESPONSIVE UNTUK HP --- */
+        @media (max-width: 768px) {
+            .main-card {
+                flex-direction: column; /* Foto jadi di atas, teks di bawah */
+                max-width: 400px;
+            }
+
+            .photo-side {
+                height: 300px;
+                flex: none;
+            }
+
+            .content-side {
+                padding: 30px 20px;
+            }
+
+            .greetings {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        <div class="photo-side"></div>
+
+        <div class="content-side">
+            <div class="greetings">
+                HAPPY <br> BIRTHDAY!
+            </div>
+
+            <div class="message-box">
+                <p>
+                    Selamat ulang tahun, BB! Di hari spesial ini, aku cuma mau bilang makasih sudah hadir di hidupku dan makasih sudah jadi alasan aku buat terus belajar hal baru termasuk bikin ginian. 
+                    Meskipun cuma lewat website sederhana ini, aku harap kamu bisa ngerasain betapa berartinya kamu buat aku. 
+                    Cie yang makin hari makin tua tapi makin cantik! Maaf ya kadonya digital dulu, maklum masih proses jadi IT-guy demi masa depan kita, hehe.
+                </p>
+            </div>
+
+            <p class="description">Nih ada hadiah buat kamu, pencet sesuai urutan ya! 👇</p>
+
+            <div class="menu-container">
+                <button onclick="window.location.href='kata.html'">Hal 1</button>
+                <button onclick="window.location.href='flower.html'">Hal 2</button>
+                <button onclick="window.location.href='tekateki.html'">Quiz</button>
+                <button onclick="window.location.href='pesan.html'">Kesan</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

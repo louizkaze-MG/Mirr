@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Spesial Untukmu ✨</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* SEMUA CSS PILIHANMU ADA DI SINI */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1484d4 0%, #ece2e6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .card {
+            background: rgb(13, 130, 240);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+            color: white;
+        }
+
+        h2 {
+            color: #cef4fd;
+            margin-bottom: 20px;
+        }
+
+        #question-text {
+            font-size: 1.1rem;
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+            min-height: 60px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #f8bbd0;
+            border-radius: 25px;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        input[type="text"]:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 8px rgba(233, 30, 99, 0.2);
+        }
+
+        button {
+            background: #1e54e9;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #c2185b;
+            transform: scale(1.05);
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 8px;
+            width: 0%;
+            background-color: #e91e63;
+            transition: 0.5s;
+        }
+
+        #final-score {
+            color: #bf1a1a;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #final-description {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .back-nav {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 15px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: #cef4fd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card" id="quiz-card">
+            <h2 id="title">🧩 Tantangan Teka-Teki</h2>
+            
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+
+            <div id="question-box">
+                <p id="question-text"></p>
+                <div class="input-group">
+                    <input type="text" id="answerInput" placeholder="Jawaban kamu..." autocomplete="off">
+                    <button onclick="submitAnswer()">Jawab</button>
+                </div>
+            </div>
+
+            <div id="result-box" style="display: none;">
+                <h1 id="final-score"></h1>
+                <p id="final-description"></p>
+                
+                <button onclick="location.reload()" style="margin-bottom: 10px;">Coba Lagi</button>
+                
+                <button onclick="window.location.href='kata.html'" style="background: #ad1457;">
+                    Klik di sini jika ada pesan buat aku ❤️
+                </button>
+            </div>
+
+            <div class="back-nav">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> back to home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Pertanyaan
+        const questions = [
+            { q: "Aku lahir jam berapa?", a: ["jam 9 pagi", "9 pagi", "09.00"] },
+            { q: "Pedes atau manis?", a: ["manis"] },
+            { q: "Lagu favorit aku?", a: ["sampai jadi debu", "debu"] },
+            { q: "Apa wishlist kita dalam waktu dekat?", a: ["ketemu", "ketemuan", "naik gunung"] },
+            { q: "Aku pernah ajak kamu kalo udah nikah tinggal dimana?", a: ["jogja", "bandung"] },
+            { q: "Kopi kesukaan aku?", a: ["butterscotch"] },
+            { q: "Warna favorit kita apakah sama?", a: ["ya", "sama"] },
+            { q: "Gunung pertama yang aku naikin?", a: ["gunung kembang", "kembang"] },
+            { q: "Berapa kali aku hilangin gelang?", a: ["2 kali", "2"] },
+            { q: "Faiz linus siapanya aku?", a: ["sahabat"] }
+        ];
+
+        let currentIdx = 0;
+        let score = 0;
+
+        const qText = document.getElementById('question-text');
+        const qBox = document.getElementById('question-box');
+        const rBox = document.getElementById('result-box');
+        const progressBar = document.getElementById('progress-bar');
+        const inputField = document.getElementById('answerInput');
+
+        function loadQuestion() {
+            if (currentIdx < questions.length) {
+                qText.innerText = `${currentIdx + 1}. ${questions[currentIdx].q}`;
+                inputField.value = "";
+                inputField.focus();
+                progressBar.style.width = ((currentIdx) / questions.length * 100) + "%";
+            } else {
+                showResult();
+            }
+        }
+
+        function submitAnswer() {
+            const userAns = inputField.value.toLowerCase().trim();
+            if (userAns === "") return; // Jangan lanjut kalau kosong
+
+            const isCorrect = questions[currentIdx].a.some(jawaban => 
+                userAns.includes(jawaban.toLowerCase())
+            );
+            
+            if (isCorrect) {
+                score += 10;
+            }
+            
+            currentIdx++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            qBox.style.display = "none";
+            rBox.style.display = "block";
+            progressBar.style.width = "100%";
+            
+            document.getElementById('title').innerText = "Hasil Akhir ✨";
+            document.getElementById('final-score').innerText = "Skor: " + score;
+
+            let desc = "";
+            if (score === 100) {
+                desc = "Oke approve, langsung nikah ini ❤️";
+            } else if (score >= 80) {
+                desc = "Perbaiki lagi ya pengetahuannya tentang kita!";
+            } else if (score >= 40) {
+                desc = "Gimanasiiii Katanyaa cintaaaa matiiii heeuehh";
+            } else {
+                desc = "Dahlah sedih";
+            }
+            document.getElementById('final-description').innerText = desc;
+        }
+
+        // Jalankan saat load
+        loadQuestion();
+
+        // Support tombol Enter
+        inputField.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                submitAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
