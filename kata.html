@@ -3,12 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Surat Spesial Untukmu ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            min-height: 100vh;
+            overflow-y: auto; 
+            padding: 40px 0;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .envelope-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center;
+            height: auto; 
+            margin: auto;
+        }
+
+        .envelope-card::before {
+            content: "";
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 2px solid #ff4d6d;
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .heart-btn {
+            font-size: 3.5rem;
+            color: #ff4d6d;
+            cursor: pointer;
+            animation: beat 1.2s infinite;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .romantic-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+            min-height: 100px;
+            font-style: italic;
+            word-wrap: break-word;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-weight: bold;
+            color: #ff4d6d;
+            opacity: 0;
+            transition: 2s;
+        }
+
+        .nav-home {
+            margin-top: 40px;
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-home:hover {
+            background: #c9184a;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
+
+    <canvas id="particles"></canvas>
+    
+    <audio id="mySong">
+        <source src="musik.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="envelope-card">
+        <div class="heart-btn" id="startBtn">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <h3 style="color: #ff4d6d; margin-top: 0;">Untuk Mirla Sayang</h3>
+        
+        <div class="romantic-text" id="textTarget">
+            <span style="color: #888;">Klik hati di atas untuk membaca pesan...</span>
+        </div>
+
+        <div class="signature" id="sign">
+            — Dari yang selalu menyayangimu ❤️
+        </div>
+
+        <a href="index.html" class="nav-home">
+            <i class="fas fa-house-chimney"></i> Back to Menu
+        </a>
     </div>
 
-            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to home</a>
-        </div>
+    <script>
+        const kataKata = "Hai Mirla...\nSelamat ulang tahun sayangg. Di hari ini wanitaku terlahir ke dunia untuk tugas yang berat, menjadi anak pertama yang berhasil, menjadi kakak yang baik untuk adiknya dan menjadi pasangan yang baik untukku. Dan tugasmu sebagai pasangan sudah sangat baik untukku bahkan aku bingung membedakan antara sempurna dan kamu karena itu dua hal yang sangat tipis. \n\nKita sudah sejauh ini melangkah bersama dan mengukir cerita indah untuk kisah kita. Terimakasih di kehidupan yang hanya sekali ini kamu sudah hadir di hidupku dan memberi warna yang sebelumnya tidak pernah ada di hidupku. Dari sekian banyak orang yang mengucapkanmu selamat ulang tahun untukmu, aku ingin menjadi salah satu diantaranya yang bukan hanya mengucapkannya tetapi juga dengan bangga mengapresiasi setiap langkahmu hingga sejauh ini, aku tahu betul semua kesulitanmu yang kamu rasain sekarang dan aku dengan sangat bangga kepadamu bisa bertahan sejauh ini. Mungkin dunia melihatmu sebagai sosok yang kuat dan mandiri, tapi bagiku, kamu adalah tempat di mana aku bisa menjadi diriku sendiri tanpa harus berpura-pura. Terima kasih telah menjadi rumah paling nyaman untuk hatiku yang sedang berkelana.\n\nTeruslah berjuang untuk semua hal yang kamu semogakan, dan aku akan selalu ada di sampingmu aku akan selalu menjadi orang pertama yang akan selalu support kamu untuk setiap hal baik yang kamu lakukan. Selamat ulang tahun, alasanku untuk selalu pulang. Terima kasih sudah lahir dan menjadi bagian terindah dalam skenario hidupku. \n\nI love you more than these lines of code could ever say.";
+
+        const btn = document.getElementById('startBtn');
+        const target = document.getElementById('textTarget');
+        const sign = document.getElementById('sign');
+        const song = document.getElementById('mySong');
+        let index = 0;
+
+        function typeEffect() {
+            if (index < kataKata.length) {
+                if (index === 0) target.innerHTML = ""; 
+                
+                let char = kataKata.charAt(index);
+                target.innerHTML += char === "\n" ? "<br>" : char;
+                
+                index++;
+                
+                // Auto-scroll halus ke bawah
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+                
+                setTimeout(typeEffect, 50); 
+            } else {
+                sign.style.opacity = "1";
+            }
+        }
+
+        // Event Listener untuk Tombol Hati
+        btn.addEventListener('click', () => {
+            if (index === 0) {
+                // Putar musik saat pertama kali diklik
+                song.play().catch(error => {
+                    console.log("Autoplay dicegah oleh browser, tapi karena ini klik manual harusnya aman.");
+                });
+                typeEffect();
+            }
+        });
+
+        // Animasi Partikel
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2 + 1,
+                speed: Math.random() * 1 + 0.5
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 77, 109, 0.5)";
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.y -= p.speed;
+                if (p.y < -10) p.y = canvas.height + 10;
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>

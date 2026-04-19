@@ -22,7 +22,6 @@ body {
 
 .img {
     position: absolute;
-    width: 200px;
     z-index: 10;
     border-radius: 15px;
     filter: drop-shadow(0 0 10px pink);
@@ -43,24 +42,33 @@ body {
     top: 50px;
     left: 25px;
     --rot: -12deg;
+    width: 150px;
+    margin-left: 50px;
 }
 
 .kanan-atas {
     top: 45px;
     right: 30px;
     --rot: 9deg;
+    width: 170px;
+    margin-right: 50px; 
 }
 
 .kiri-bawah {
     bottom: 45px;
     left: 15px;
     --rot: 14deg;
+    width: 150px;
+     margin-left: 70px; 
 }
 
 .kanan-bawah {
     bottom: 40px;
     right: 35px;
     --rot: -8deg;
+    width: 130px;
+    margin-right: 70px; 
+    
 }
 
 /* kiri tengah */
@@ -70,6 +78,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     --rot: -6deg;
+    width: 120px;
 }
 
 /* kanan tengah */
@@ -79,6 +88,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     --rot: 6deg;
+    width: 120px;
 }
 
 /* atas tengah */
@@ -87,6 +97,7 @@ body {
     left: 42%;
     transform: translateX(-50%);
     --rot: 0deg;
+    width: 300px;
 }
 
 
